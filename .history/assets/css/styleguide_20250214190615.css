@@ -1,0 +1,961 @@
+/* ------------------------- Styleguide 2021 Â® Code by Dennis -------------------------------------------------- */
+
+/* ------------------------- Start - UI Kit Reset -------------------------------------------------- */
+
+.uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6, .uk-heading-2xlarge, .uk-heading-large, .uk-heading-medium, .uk-heading-small, .uk-heading-xlarge, h1, h2, h3, h4, h5, h6 {color: inherit;}
+.uk-link, a, .uk-link:hover{color: inherit; text-decoration: none;}
+svg {max-width: none; height: auto; width: auto;}
+*+address, *+dl, *+fieldset, *+figure, *+ol, *+p, *+pre, *+ul { margin-top: initial;}
+address, dl, fieldset, figure, ol, p, pre, ul {margin: initial;}
+
+/* ------------------------- Fonts -------------------------------------------------- */
+
+@font-face {
+    font-family: 'Noi Grotesk';
+    src: url('../fonts/NoiGrotesk-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: auto;
+}
+
+@font-face {
+    font-family: 'Noi Grotesk';
+    src: url('../fonts/NoiGrotesk-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: auto;
+}
+
+@font-face {
+    font-family: 'Beni';
+    src: url('../fonts/BeniRegular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: auto;
+}
+
+/* ------------------------- Colors -------------------------------------------------- */
+
+:root {
+    --primary: #FF6D13;
+    --primary-dark: #A92309;
+    --secondary: #00C6FF;
+
+    --bg-light: #ECECEC;
+
+    --border: #333333;
+    --border-light:rgba(255, 255, 255, 0.7);
+
+    --white: #FFF;
+    --black: #000;
+    --inactive: #2e2e2e;
+
+    --alert-error: #FF2929;
+    --alert-success: #00B350;
+
+    --text: rgba(255, 255, 255, 1);
+    --text-medium: rgba(255, 255, 255, 0.8);
+    --text-light: rgba(255, 255, 255, 0.5);
+
+    --section-padding: 8em;
+    --section-padding-big: 12em;
+    --section-padding-medium: 6em;
+    --section-padding-small: 4em;
+    --section-padding-tiny: 2em;
+
+    --container-padding: 8em;
+}
+
+@media screen and (max-width: 1280px){
+
+    :root {
+        --section-padding: 6em;
+        --section-padding-big: 9em;
+        --section-padding-medium: 4.5em;
+        --section-padding-small: 3em;
+        --section-padding-tiny: 1.5em;
+
+        --container-padding: 10vw;
+    }
+}
+
+@media screen and (max-width: 540px){
+
+    :root {
+        --section-padding: 4em;
+        --section-padding-big: 6em;
+        --section-padding-medium: 3em;
+        --section-padding-small: 2em;
+        --section-padding-tiny: 1em;
+
+        --container-padding: 5vw;
+    }
+}
+
+/* ------------------------- Custom Colors -------------------------------------------------- */
+
+
+/* ------------------------- Body -------------------------------------------------- */
+
+*, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+li, ul {padding: 0; margin: 0; list-style: none;}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    font-family: Noi Grotesk, sans-serif;
+    color: var(--white);
+    line-height: 1.3;
+    font-weight: 400;
+    font-size: 16px;
+    font-size: clamp(16px, 1.2vw, 19px);
+}
+
+html, body {
+    width: 100%;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    background-color: var(--black);
+}
+
+main {
+    position: relative;
+    width: 100%;
+    top: 0;
+    overflow: hidden;
+}
+
+/* Selection */
+::selection {background-color: rgba(255, 109, 19, 1);}
+::-moz-selection {background-color: rgba(255, 109, 19, 1);}
+
+
+/* ------------------------- Typography -------------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 p, a, strong  {padding: 0; margin: 0; font-weight: 400; letter-spacing: normal;}
+h1:last-child, h2:last-child, h1.big:last-child, h1.small:last-child, h2.big:last-child, h3:last-child, p:last-child, p.big:last-child, p.small:last-child, a:last-child, strong:last-child  {margin-bottom: 0;}
+
+h1.big {
+	font-size: 120px;
+    font-size: 18vw;
+    font-size: clamp(7.5em, 18vw, 20em);
+    margin-bottom: .2em;
+}
+
+h1, h2.big {
+    font-family: Beni, sans-serif;
+    color: var(--white);
+    font-size: 96px;
+    font-size: 14vw;
+    font-size: clamp(6em, 14vw, 16em);
+    line-height: .75; 
+    font-weight: 400;
+    margin-bottom: .3em;
+}
+  
+h2, h1.small {
+    font-family: Beni, sans-serif;
+    font-size: 72px;
+    font-size: 11vw;
+    font-size: clamp(4.5em, 11vw, 12em);
+    color: var(--white);
+    line-height: .75;
+    font-weight: 400;
+    margin-bottom: .5em;
+}
+
+h3 {
+    font-family: Noi Grotesk, sans-serif;
+    color: var(--white);
+    font-size: 20px;
+    font-size: 1.25em;
+    line-height: 1;
+    font-weight: 700;
+    margin-bottom: 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+h3.big {
+	font-size: 28px;
+    font-size: 1.75em;
+    margin-bottom: .9em;
+}
+  
+h4 {
+    font-family: Noi Grotesk, sans-serif;
+    color: var(--white);
+    font-size: 20px;
+    font-size: 1.25em;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: .5em;
+}
+
+p {
+    font-family: Noi Grotesk, sans-serif;
+    color: var(--text-medium);
+    font-size: 16px;
+    font-size: 1em;
+    line-height: 1.5;
+    font-weight: 400;
+    margin-bottom: 1em;
+}
+
+p strong {
+    font-weight: 700;
+    color: var(--text);
+}
+  
+a {
+    font-family: Noi Grotesk, sans-serif;
+    color: var(--text);
+    text-decoration: underline;
+    font-weight: 400;
+}
+
+a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--primary);
+}
+
+  
+/* ------------------------- Main Elements -------------------------------------------------- */
+
+.section {
+    display: block;
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+    position: relative;
+    background: var(--black);
+}
+
+.section.full-height {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.section.no-padding {
+    padding-top: unset;
+    padding-bottom: unset;
+}
+
+.section.section-styleguide {
+    background-color: var(--black);
+}
+
+.container {
+    margin: 0 auto;
+    padding-left: var(--container-padding);
+    padding-right: var(--container-padding);
+    max-width: 90em;
+}
+
+.container.medium {
+    max-width: 75em;
+} 
+
+.container.small {
+    max-width: 60em;
+} 
+
+.container.no-padding {
+    padding-left: unset;
+    padding-right: unset;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.row.no-flex {
+    display: block;
+}
+
+.row.nowrap {
+    flex-wrap: nowrap;
+}
+
+.flex-col {
+    display: block;
+    width: 100%;
+    order: 2;
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.overlay.dark {
+    background: var(--black);
+    opacity: .8;
+}
+
+.overlay.medium {
+    background: var(--black);
+    opacity: .5;
+}
+
+.overlay.light {
+    background: var(--black);
+    opacity: .3;
+}
+
+.line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--border);
+    margin-top: 0;
+    margin-bottom: var(--section-padding-small);
+}
+
+.stripe {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: var(--border);
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media screen and (max-width: 1280px){
+
+    .section {
+        padding-top: var(--section-padding);
+        padding-bottom: var(--section-padding);
+    }
+
+    .container {
+        padding-right: var(--container-padding);
+        padding-left: var(--container-padding);
+    }
+}
+
+@media screen and (max-width: 540px){
+
+    .section.full-height {
+        min-height: calc(var(--vh, 1vh) * 100);
+    }
+
+    .section {
+        padding-top: var(--section-padding);
+        padding-bottom: var(--section-padding);
+    }
+
+    .container {
+        padding-right: var(--container-padding);
+        padding-left: var(--container-padding);
+    }
+}
+
+/* ------------------------- Buttons -------------------------------------------------- */
+
+.btn {
+    display: inline-block;
+    margin-right: 1.25em;
+    padding: 1.25em 1.75em;
+    background: var(--primary);
+    color: var(--white);
+    line-height: 1;
+    font-size: 1em;
+    font-weight: 700;
+    text-decoration: none;    
+    transition: all .3s cubic-bezier(0.7, 0, 0.3, 1);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 0;
+    border-radius: 3em;
+    overflow: hidden;
+    transform: translateZ(0) rotate(0.001deg) scale(1);
+    will-change: transform, color, background;
+}
+
+.btn:hover {
+    color: var(--primary);
+    background: var(--white);
+    text-decoration: none;
+    cursor: pointer;
+    transform: translateZ(0) rotate(0.001deg) scale(.95);
+}
+
+.btn:hover .back {
+    opacity: 0;
+}
+
+
+.btn .btn-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn .btn-text {
+    display: inline-block;
+    margin-right: 0.25em;
+    margin-left: 0.25em;
+    line-height: 1.1em;
+    transform: translate(0, -.05em) translateZ(0) rotate(0.001deg);
+}
+
+.btn .btn-icon {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    width: 1.1em;
+    height: 1.1em;
+    margin-right: 0.25em;
+    margin-left: 0.25em;
+    clear: none;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex: 0 auto;
+}
+
+.btn .btn-icon svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 0%;
+    justify-content: center;
+    align-items: center;
+    align-self: auto;
+}
+
+.btn .button-text-light {
+    opacity: 0.6;
+    font-weight: 400;
+}
+
+.btn.full-width {
+    width: 100%;
+    margin-right: 0em;
+    margin-bottom: 0em;
+}
+
+/* --- Button Options --- */
+
+.btn.light {
+    background: var(--white);
+    color: var(--primary);
+}
+
+.btn.light:hover {
+    color: var(--primary-dark);
+}
+
+.btn.outline {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--primary);
+    color: var(--primary);
+}
+  
+.btn.outline:hover {
+    box-shadow: inset 0 0 0 1px var(--white);
+}
+
+/* ------------------------- Social Icons -------------------------------------------------- */
+
+.s-icon {
+    position: relative;
+    overflow: hidden;
+    width: 2em;
+    height: 2em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    border-radius: 50%;
+    background-color: transparent;
+    -webkit-transition: background-color .25s ease-in-out;
+    transition: background-color .25s ease-in-out;
+    display: block;
+    float: left;
+}
+
+.s-icon .s-icon-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+}
+
+.s-icon .s-icon-wrap svg {
+    display: block;
+}
+
+.s-icon .s-icon-wrap svg path {
+    fill: var(--white);
+}
+
+.s-icon:hover {
+    background: var(--primary);
+    cursor: pointer;
+}
+
+
+
+
+/* ------------------------- Color Box -------------------------------------------------- */
+
+.color-box {
+    width: calc(33.333% -  1.333em);
+    background: var(--white);
+    font-weight: 700;
+    color: var(--white);
+    margin-right: 2em;
+    margin-bottom: 2em;
+}
+
+.color-box:nth-child(3), .color-box:nth-child(6) {
+    margin-right: 0;
+}
+
+.color-box:before {
+    content: "";
+    display: block;
+    padding-top: 40%;
+}
+
+.color-box .overlay {
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.color-box .light {
+    opacity: .6;
+}
+
+.color-box.primary {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.color-box.primary-medium {
+    background: var(--primary-medium);
+    color: var(--white);
+}
+
+.color-box.primary-dark {
+    background: var(--primary-dark);
+    color: var(--white);
+}
+
+.color-box.secondary {
+    background: var(--secondary);
+    color: var(--white);
+}
+
+.color-box.white {
+    background: var(--white);
+    color: var(--black);
+}
+
+.color-box.black {
+    background: var(--black);
+    box-shadow: inset 0 0 0 10px var(--white)  ;
+    color: var(--white);
+}
+
+@media screen and (max-width: 1000px){
+    .color-box {
+        width: calc(50% - 1em);
+    }
+    
+    .color-box:nth-child(3), .color-box:nth-child(6) {
+        margin-right: 2em;
+    } 
+
+    .color-box:nth-child(even) {
+        margin-right: 0;
+    } 
+}
+
+@media screen and (max-width: 720px){
+    .color-box {
+        width: 100%;
+    }
+
+    .color-box:nth-child(even), .color-box:nth-child(odd) {
+        margin-right: 0;
+    } 
+}
+
+
+/* ------------------------- Text Block -------------------------------------------------- */
+
+.textblock p + h1, .textblock p + h2, .textblock ul + h1, .textblock ul + h2, .textblock ol + h1, .textblock ol + h2 {
+    margin-top: .75em;
+}
+
+.textblock p + h3, .textblock ul + h3, .textblock ol + h3 {
+    margin-top: 1.75em;
+}
+
+.textblock p + p strong, .textblock ul + p strong, .textblock ol + p strong {
+    margin-top: .75em;
+    margin-bottom: .5em;
+    display: inline-block;
+}
+
+/*  Strong (bold)  */
+
+.textblock strong {
+    font-weight: 700;
+}
+
+/*  EM (italic)  */
+
+.textblock em {
+    color: inherit;
+}
+
+/*  IMG  */
+
+.textblock img {
+    padding-top: 1em;
+    padding-bottom: 2em;
+    width: 100%;
+}
+
+/*  UL (bullet Points)  */
+
+.textblock ul {
+    padding: 0;
+    display: inline;
+    width: 100%;
+}
+
+.textblock ul li {
+    line-height: 1.5;
+    color: var(--text-medium);
+    padding-left: 1.5em;
+    margin-bottom: 1em;
+    position: relative;
+}
+
+.textblock ul li:before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    background: var(--primary);
+    left: .1em;
+    top: .55em;
+}
+
+/*  OL  */
+
+.textblock ol {
+    padding: 0;
+    display: inline;
+    width: 100%;
+    list-style-position: inside;
+    display: inline-block;
+    margin-bottom: 1.5em;
+}
+
+.textblock ol li {
+    line-height: 1.5;
+	list-style: decimal;
+    color: var(--text-medium);
+    margin-bottom: 0em;
+    position: relative;
+    margin-left: 1em;
+    padding-left: .4em;
+}
+
+
+
+
+/* ------------------------- Form -------------------------------------------------- */
+
+.form {
+     width: 100%;
+    display: block;
+}
+
+.form-container {
+    width: 100%;
+}
+
+.hidden-field {
+    position: absolute;
+    left: -9999px;
+}
+
+.form input, .form textarea, .form select {
+    border:0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+ }
+
+.grecaptcha-badge { 
+    top: calc(100% - 120px) !important; 
+    transform: translate(0, -50%);
+    box-shadow: rgba(0, 0, 0, 0.20) 0px 2px 5px !important;
+    visibility: hidden;
+}
+
+.form-col {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.25em;
+}
+
+.form-col:last-child {
+    margin-bottom: 0;
+}
+
+.form .field {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    width: 100%;
+    padding: 1em 1.25em;
+    border: 1px solid var(--border);
+    border-radius: 0;
+    font-weight: 500;
+    font-size: 1em;
+    color: var(--white);
+    display: block;
+    background: transparent;
+}
+
+.form .field:focus {
+    outline: 0;
+    outline-width: 1px !important;
+    outline-offset: 0px;
+    border-radius: 0;
+    border: 1px solid var(--primary);
+}
+
+.form .field::-webkit-input-placeholder, 
+.form .field:-ms-input-placeholder,
+.form .field::-ms-input-placeholder,
+.form .field::placeholder {
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.form textarea.field {
+    min-height: 10em;
+    padding-top: 1em;
+    resize: vertical;
+}
+
+.form .label {
+    width: 100%;
+    display: block;
+    margin-bottom: 1em;
+    color: var(--white);
+    font-size: .75em;
+    font-weight: 500;
+}
+
+.form .label span {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.form .form-btn {
+    padding: 1.2em 1.75em 1.3em 1.75em;
+    margin-bottom: 0;
+}
+
+/* --- Arlert Options --- */
+
+.alert {
+    width: 100%;
+    padding: .4em .5em .6em .5em;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--alert-error);
+    background-color: rgba(255, 71, 71, 0.2);
+    text-align: center;
+    margin: 1em 0;
+}
+
+.alert span {
+    color: var(--alert-error);
+    font-size: .8em;
+    font-weight: 500; 
+}
+
+.alert-success {
+    border-color: var(--alert-success);
+    background-color: rgba(11, 160, 78, 0.2);
+}
+
+.alert-success span {
+    color: var(--alert-success);
+}
+
+/* --- Custom Checkbox --- */
+
+.form .checkbox-button {
+    display: flex;
+    margin-bottom: 1em;
+    padding-left: 1.25em;
+    align-items: center;
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.form .checkbox-button:hover {
+    cursor: pointer;
+}
+
+.form .checkbox-button input {
+    opacity: 0;
+    position: absolute;
+    z-index: -1
+}
+
+.form .checkbox-button span {
+    height: 1.1em;
+    margin-bottom: 0px;
+    color: var(--text-light);
+    order: 2;
+    display: inline-block;
+}
+
+.form .checkbox-button .custom-check {
+    position: relative;
+    order: 1;
+    width: 20px;
+    height: 20px;
+    margin-top: 0em;
+    margin-right: 0.5em;
+    margin-left: -1.25em;
+    border: 1px solid var(--border);
+    border-radius: 0em;
+    box-shadow: 0;
+    overflow: hidden;
+}
+
+.form .checkbox-button .custom-check:after {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    content: "";
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0; 
+    position: absolute;
+    background-color: var(--primary) ;
+    background-image: url("../img/form-checkmark.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.form .checkbox-button input:checked ~ .custom-check:after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.form .checkbox-button:hover input ~ .custom-check {
+    background-color: var(--bg-light);
+}
+
+.form .checkbox-button input:checked ~ .custom-check {
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.form .checkbox-button input:checked ~ span {
+    color: var(--white);
+    font-weight: 500;
+}
+
+
+/* --- Custom Radio --- */
+
+.form .checkbox-button .custom-radio {
+    position: relative;
+    order: 1;
+    width: 20px;
+    height: 20px;
+    margin-top: 0em;
+    margin-right: 0.5em;
+    margin-left: -1.25em;
+    border: 1px solid var(--border);
+    border-radius: 0em;
+    box-shadow: 0;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.form .checkbox-button .custom-radio:after {
+    display: block;
+    opacity: 0;
+    visibility: hidden;
+    content: "";
+    width: 6px;
+    height: 6px;
+    top: 6px;
+    left: 6px; 
+    position: absolute;
+    background: var(--white);
+    border-radius: 50%;
+}
+
+.form .checkbox-button input:checked ~ .custom-radio:after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.form .checkbox-button:hover input ~ .custom-radio {
+    background-color: var(--bg-light);
+}
+
+.form .checkbox-button input:checked ~ .custom-radio {
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    -webkit-text-fill-color: #000;
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+    box-shadow: 0 0 0px 1000px #fff inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input[type=radio] {
+    -webkit-appearance: none;
+}
+
+

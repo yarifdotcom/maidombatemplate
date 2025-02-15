@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maidomba</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333333;
+            text-align: center;
+            background-color: #f3eeea; /* Pampas */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #f3eeea; /* Pampas */
+            padding: 10px 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #e3ab8e; /* Tumbleweed */
+        }
+
+        .menu {
+            display: flex;
+            gap: 20px;
+            background-color: #e3ab8e; /* Tumbleweed */
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .menu a {
+            color: #333333;
+            text-decoration: none;
+        }
+
+        .menu a:hover {
+            color: #e3844c; /* Burnt Sienna */
+        }
+
+        .language-picker {
+            position: fixed;
+            right: 20px;
+            top: 10px;
+            display: flex;
+            gap: 10px;
+            background-color: #e3ab8e; /* Tumbleweed */
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .language-picker a {
+            color: #333333;
+            text-decoration: none;
+        }
+
+        .language-picker a:hover {
+            color: #e3844c; /* Burnt Sienna */
+        }
+
+        .social-media {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .social-media a {
+            color: #e3844c; /* Burnt Sienna */
+            text-decoration: none;
+            font-size: 24px;
+        }
+
+        .hero {
+            padding: 100px 20px;
+            background-color: #f3eeea; /* Pampas */
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            color: #e3844c; /* Burnt Sienna */
+        }
+
+        .hero .slogan {
+            background-color: #e3844c; /* Burnt Sienna */
+            color: #f3eeea; /* Pampas */
+            padding: 10px 20px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        .video-container {
+            position: relative;
+            margin-top: 40px;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .overlay-atas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            /* background: rgba(227, 132, 76, 0.3); //Burnt Sienna with transparency */
+            background-image: linear-gradient(rgba(243, 238, 234, 1), rgba(243, 238, 234, 0));
+            border-radius: 10px;
+        }
+
+        .overlay-bawah {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            /* background: rgba(227, 132, 76, 0.3); //Burnt Sienna with transparency */
+            background-image: linear-gradient(rgba(243, 238, 234, 0), rgba(243, 238, 234, 1));
+            border-radius: 10px;
+        }
+
+        .ornaments {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .cloud {
+            position: absolute;
+            width: 100px;
+            height: 60px;
+            background-color: #f1c4a2; /* Mandys Pink */
+            border-radius: 50px;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background-color: #f1c4a2; /* Mandys Pink */
+            border-radius: 50%;
+        }
+
+        .cloud::before {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            left: 10px;
+        }
+
+        .cloud::after {
+            width: 80px;
+            height: 80px;
+            top: -40px;
+            right: 10px;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        footer {
+            background-color: #e3844c; /* Burnt Sienna */
+            color: #f3eeea; /* Pampas */
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #f3eeea; /* Pampas */
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #e3ab8e; /* Tumbleweed */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu">
+            <a href="#about">About us & mission</a>
+            <a href="#packages">Packages</a>
+        </div>
+        <div class="language-picker">
+            <a href="#">DE</a>
+            <a href="#">EN</a>
+            <a href="#">AR</a>
+        </div>
+        <div class="social-media">
+            <a href="#"><i class="fab fa-instagram"></i>ig</a>
+            <a href="#"><i class="fab fa-tiktok"></i>tiktok</a>
+            <a href="#"><i class="fab fa-youtube"></i>yt</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1>MAIDOMBA</h1>
+            <div class="slogan">Your Ultimate Solution</div>
+            <div class="video-container">
+                <iframe width="560" height="315" 
+                    src="https://www.youtube.com/embed/QN4WPMfXTaw?autoplay=1&mute=1&controls=0" 
+                    title="YouTube video player" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                </iframe>
+
+                <div class="overlay-atas"></div>
+                <div class="overlay-bawah"></div>
+                <div class="ornaments">
+                    <!-- Ornamen-ornamen awan kecil mengelilingi video -->
+                    <div class="cloud" style="top: 5%; left: 5%;"></div>
+                    <div class="cloud" style="top: 10%; right: 10%;"></div>
+                    <div class="cloud" style="bottom: 5%; left: 15%;"></div>
+                    <div class="cloud" style="bottom: 10%; right: 5%;"></div>
+                    <div class="cloud" style="top: 20%; left: 20%;"></div>
+                    <div class="cloud" style="top: 30%; right: 30%;"></div>
+                    <div class="cloud" style="bottom: 20%; left: 25%;"></div>
+                    <div class="cloud" style="bottom: 30%; right: 20%;"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Maidomba. All rights reserved. | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+        // JavaScript untuk efek scroll pada ornamen
+        window.addEventListener('scroll', () => {
+            const clouds = document.querySelectorAll('.cloud');
+            clouds.forEach((cloud, index) => {
+                const scrollY = window.scrollY;
+                cloud.style.transform = `translateY(${scrollY * (index % 2 === 0 ? 0.1 : -0.1)}px)`;
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>
