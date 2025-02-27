@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komik Interaktif</title>
+    <style>
+           body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: linear-gradient(to bottom, #f4e2a6, #e6c368);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 1s ease-in-out;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .bubble {
+            position: absolute;
+            width: calc(10px + 20px * var(--size));
+            height: calc(10px + 20px * var(--size));
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            bottom: -20px;
+            animation: rise var(--speed) linear infinite;
+            opacity: var(--opacity);
+        }
+        @keyframes rise {
+            0% { transform: translateY(0) translateX(0); opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(calc(-10px + 20px * var(--size))); opacity: 0; }
+        }
+        .comic-container {
+            width: 80vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .title {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 50px 0;
+            opacity: 0;
+            transform: scale(1.2) translateY(50px);
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+            text-align: center;
+        }
+        .title.visible {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        .comic-page, .comic-text {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px 0;
+            opacity: 0;
+            transform: scale(1.2) translateY(50px);
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+        }
+        .comic-text {
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .comic-page.visible, .comic-text.visible {
+            opacity: 1;
+            animation: scaleIn 0.5s ease-out forwards, wave 2s infinite alternate ease-in-out;
+        }
+        /* .comic-page.active, .comic-text.active {
+            animation: wave 2s infinite alternate ease-in-out;
+        } */
+
+        @keyframes wave {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(5px, -5px, 0); }
+        }
+        @keyframes scaleIn {
+            0% { transform: scale(1.2) skewY(10deg); }
+            100% { transform: scale(1) skewY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="background" id="background"></div>
+    <div class="comic-container" id="comicContainer">
+        <div class="title">Judul Komik</div>
+        <img src="asset/img/1.webp" class="comic-page">
+        <div class="comic-text">Ini adalah teks narasi setelah gambar pertama.</div>
+        <img src="asset/img/2.webp" class="comic-page">
+        <div class="comic-text">Ini adalah teks narasi setelah gambar kedua.</div>
+        <img src="asset/img/3.webp" class="comic-page">
+        <div class="comic-text">Ini adalah teks narasi setelah gambar ketiga.</div>
+    </div>
+    <script>
+        const title = document.querySelectorAll('.title');
+        const elements = document.querySelectorAll('.comic-page, .comic-text');
+        const background = document.getElementById('background');
+
+        function createBubbles(count, speedFactor) {
+            background.innerHTML = '';
+            for (let i = 0; i < count; i++) {
+                let bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                bubble.style.setProperty('--size', Math.random());
+                bubble.style.setProperty('--speed', (4 + Math.random() * speedFactor) + 's');
+                bubble.style.setProperty('--opacity', (0.3 + Math.random() * 0.7));
+                bubble.style.left = Math.random() * 100 + 'vw';
+                background.appendChild(bubble);
+            }
+        }
+
+        function handleScroll() {
+            title.forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('visible');
+                    el.classList.add('active');
+                }
+            });
+
+            elements.forEach((el) => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('visible');
+                    el.classList.add('active');
+                } else {
+                    // el.classList.remove('visible');
+                    // el.classList.remove('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        createBubbles(20, 8);
+    </script>
+</body>
+</html>

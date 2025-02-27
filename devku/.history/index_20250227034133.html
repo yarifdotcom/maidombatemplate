@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komik Interaktif</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #f4e2a6, #e6c368);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+            animation: wind 3s infinite alternate ease-in-out;
+            z-index: -1;
+        }
+        @keyframes wind {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(20px); }
+        }
+        .comic-container {
+            position: relative;
+            width: 80vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .comic-page {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            opacity: 0;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            transform: scale(0.8);
+        }
+        .comic-page.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="comic-container" id="comicContainer">
+        <img src="https://via.placeholder.com/800x1200?text=Chapter+1" class="comic-page active">
+        <img src="https://via.placeholder.com/800x1200?text=Chapter+2" class="comic-page">
+        <img src="https://via.placeholder.com/800x1200?text=Chapter+3" class="comic-page">
+    </div>
+    <script>
+        let currentIndex = 0;
+        const pages = document.querySelectorAll('.comic-page');
+        
+        document.addEventListener('wheel', (event) => {
+            if (event.deltaY > 0) {
+                changePage(1);
+            } else {
+                changePage(-1);
+            }
+        });
+        
+        function changePage(direction) {
+            pages[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + direction + pages.length) % pages.length;
+            pages[currentIndex].classList.add('active');
+        }
+    </script>
+</body>
+</html>

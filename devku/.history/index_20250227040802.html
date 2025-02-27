@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Komik Interaktif</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #f4e2a6, #e6c368);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background 1s ease-in-out;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .bubble {
+            position: absolute;
+            width: calc(5px + 10 * var(--size));
+            height: calc(5px + 10 * var(--size));
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            bottom: -20px;
+            animation: rise var(--speed) linear infinite;
+            opacity: 0.8;
+        }
+        @keyframes rise {
+            0% { transform: translateY(0) translateX(0); opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(calc(-20px + 40 * var(--size))); opacity: 0; }
+        }
+        .comic-container {
+            position: relative;
+            width: 80vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .comic-page {
+            position: absolute;
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            opacity: 0;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            transform: scale(0.8);
+        }
+        .comic-page.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            transform: translateY(-100%);
+            transition: transform 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="background" id="background">
+        <div class="ornament" id="ornament1" style="top: 10%; left: 20%;"></div>
+        <div class="ornament" id="ornament2" style="top: 60%; left: 70%;"></div>
+    </div>
+    <div class="comic-container" id="comicContainer">
+        <img src="asset/img/1.webp" class="comic-page active">
+        <img src="asset/img/2.webp" class="comic-page">
+        <img src="asset/img/3.webp" class="comic-page">
+    </div>
+    <script>
+        let currentIndex = 0;
+        const pages = document.querySelectorAll('.comic-page');
+        const background = document.getElementById('background');
+        let scrolling = false;
+
+        function createBubbles(count, speed) {
+            background.innerHTML = '';
+            for (let i = 0; i < count; i++) {
+                let bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                bubble.style.left = Math.random() * 100 + 'vw';
+                bubble.style.animationDuration = speed + 's';
+                background.appendChild(bubble);
+            }
+        }
+        
+        document.addEventListener('wheel', (event) => {
+            if (!scrolling) {
+                scrolling = true;
+                createBubbles(50, 3);
+                setTimeout(() => {
+                    changePage(event.deltaY > 0 ? 1 : -1);
+                    createBubbles(20, 8);
+                    scrolling = false;
+                }, 1000);
+            }
+        });
+        
+        function changePage(direction) {
+            pages[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + direction + pages.length) % pages.length;
+            pages[currentIndex].classList.add('active');
+        }
+        
+        createBubbles(20, 8);
+    </script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAIDOMBA STORYBOARD</title>
+    <style>
+           body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: linear-gradient(to bottom, #f4e2a6, #e6c368);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background 1s ease-in-out;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        .bubble {
+            position: absolute;
+            width: calc(10px + 20px * var(--size));
+            height: calc(10px + 20px * var(--size));
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            bottom: -20px;
+            animation: rise var(--speed) linear infinite;
+            opacity: var(--opacity);
+        }
+        @keyframes rise {
+            0% { transform: translateY(0) translateX(0); opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(calc(-10px + 20px * var(--size))); opacity: 0; }
+        }
+        .comic-container {
+            width: 80vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .title {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 50px 0;
+            opacity: 0;
+            transform: scale(1.2) translateY(50px);
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+            text-align: center;
+        }
+        .title.visible {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+        .comic-text {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px 0;
+            opacity: 0;
+            transform: scale(1.2) translateY(50px);
+            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+        }
+        .comic-text {
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+      
+        .comic-page.visible, .comic-text.visible {
+            opacity: 1;
+            animation: scaleIn 0.5s ease-out forwards, wave 2s infinite alternate ease-in-out;
+        }
+        /* .comic-page.active, .comic-text.active {
+            animation: wave 2s infinite alternate ease-in-out;
+        } */
+
+          .comic-page {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px 0;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px) scale(1.1);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .comic-page.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .comic-img {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+            margin: 10px auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .comic-img.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }  .comic-page {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px 0;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px) scale(1.1);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .comic-page.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .comic-img {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+            margin: 10px auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .comic-img.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .comic-page {
+            width: 100%;
+            max-width: 800px;
+            height: 500px; /* Sesuaikan tinggi agar semua gambar tetap dalam area */
+            position: relative;
+            margin: 50px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px) scale(1.1);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+            overflow: hidden; /* Mencegah gambar keluar dari batas */
+            perspective: 1200px; /* Menambahkan perspektif untuk efek 3D */
+        }
+
+        .comic-page.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .comic-img {
+            position: absolute;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain; /* Pastikan gambar tetap dalam area tanpa terpotong */
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .comic-img:nth-child(1) {
+            transform: translateZ(0);
+        }
+
+        /* Gambar kedua muncul dengan efek 3D */
+        .comic-img:nth-child(2) {
+            transform: translateY(30px) translateZ(-200px) rotateY(-25deg) scale(1.1);
+            /* filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.3));  */
+            filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Gambar ketiga dengan rotasi sebaliknya */
+        .comic-img:nth-child(3) {
+            transform: translateY(40px) translateZ(-300px) rotateY(25deg) scale(1.15);
+            /* filter: drop-shadow(-8px 8px 12px rgba(0, 0, 0, 0.3)); */
+            filter: drop-shadow(-10px 10px 15px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Gambar keempat efek lebih ekstrim */
+        .comic-img:nth-child(4) {
+            transform: translateY(50px) translateZ(-400px) rotateY(-30deg) scale(1.2);
+            /* filter: drop-shadow(12px 12px 15px rgba(0, 0, 0, 0.4)); */
+            filter: drop-shadow(15px 15px 20px rgba(0, 0, 0, 0.4));
+        }
+
+
+        .comic-img.visible {
+            opacity: 1;
+            transform: translateY(0) translateZ(0) rotateY(0) scale(1);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(30px) scale(1.1); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .comic-page, .comic-text {
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+
+        @keyframes wave {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(5px, -5px, 0); }
+        }
+        @keyframes scaleIn {
+            0% { transform: scale(1.2) skewY(10deg); }
+            100% { transform: scale(1) skewY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="background" id="background"></div>
+    <div class="comic-container" id="comicContainer">
+        <div class="title">MAIDOMBA STORY</div>
+        <div class="comic-page">
+            <img src="asset/img/1a.webp" class="comic-img" >
+            <img src="asset/img/1b.webp" class="comic-img" >
+            <img src="asset/img/1c.webp" class="comic-img" >
+        </div>
+        <div class="comic-text">Orang animasi ngetik di hp, zoom ke hp trus liat-liat paket, melakukan proses bayar. Klik BAYAR</div>
+        <div class="comic-page">
+            <img src="asset/img/2a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/2b.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/2c.webp" class="comic-img" loading="lazy">
+        </div>
+        <div class="comic-text">Langsung zoom-out</div>
+        <div class="comic-page">
+            <img src="asset/img/3a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/3b.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/3c.webp" class="comic-img" loading="lazy">
+        </div>
+        <div class="comic-text">keluar dari hp bersama thumbnail-thumbnail internet, paypal, kambing-kambing, flash-flash. Kaya terbang masuk ke ‘lights of tunnel’</div>
+        <div class="comic-page">
+            <img src="asset/img/4a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/4b.webp" class="comic-img" loading="lazy">
+            <!-- <img src="asset/img/4c.webp" class="comic-img" loading="lazy"> -->
+        </div>
+        <div class="comic-text">Muncul di sebuah ruangan kantor (real world)</div>
+        <div class="comic-page">
+            <img src="asset/img/5a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/5b.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/5c.webp" class="comic-img" loading="lazy">
+        </div>
+        <div class="comic-text">ada orang terima notification di laptop (pakai baju/polo maidomba)</div>
+        <div class="comic-page">
+            <img src="asset/img/6a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/6b.webp" class="comic-img" loading="lazy">
+            <!-- <img src="asset/img/6c.webp" class="comic-img" loading="lazy"> -->
+        </div>
+        <div class="comic-text">ngetik-ngetik isi form. Angkat telepon, nelpon</div>
+        <div class="comic-page">
+            <img src="asset/img/7a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/7b.webp" class="comic-img" loading="lazy">
+            <!-- <img src="asset/img/7c.webp" class="comic-img" loading="lazy"> -->
+        </div>
+        <div class="comic-text">Kambing dipisahkan dari gerombolannya, dicek kesehatan dan ditimbang beratnya.</div>
+        <div class="comic-page">
+            <img src="asset/img/8a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/8b.webp" class="comic-img" loading="lazy">
+            <!-- <img src="asset/img/8c.webp" class="comic-img" loading="lazy"> -->
+        </div>
+        <div class="comic-text">Ini adalah teks narasi setelah gambar 8.</div>
+        <div class="comic-page">
+            <img src="asset/img/9a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/9b.webp" class="comic-img" loading="lazy">
+            <!-- <img src="asset/img/9c.webp" class="comic-img" loading="lazy"> -->
+        </div>
+        <div class="comic-text">Ini adalah teks narasi setelah gambar 9.</div>
+        <div class="comic-page">
+            <img src="asset/img/10a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/10b.webp" class="comic-img" loading="lazy">
+            <!-- <img src="asset/img/10c.webp" class="comic-img" loading="lazy"> -->
+        </div>
+        <div class="comic-text">Ini adalah teks narasi setelah gambar 10.</div>
+        <div class="comic-page">
+            <img src="asset/img/11a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/11b.webp" class="comic-img" loading="lazy">
+            <!-- <img src="asset/img/10c.webp" class="comic-img" loading="lazy"> -->
+        </div>
+        <div class="comic-text">Ini adalah teks narasi setelah gambar 11.</div>
+        <div class="comic-page">
+            <img src="asset/img/12a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/12b.webp" class="comic-img" loading="lazy">
+            <!-- <img src="asset/img/10c.webp" class="comic-img" loading="lazy"> -->
+        </div>
+        <div class="comic-text">Ini adalah teks narasi setelah gambar 12.</div>
+        <div class="comic-page">
+            <img src="asset/img/13a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/13b.webp" class="comic-img" loading="lazy">
+            <!-- <img src="asset/img/10c.webp" class="comic-img" loading="lazy"> -->
+        </div>
+        <div class="comic-text">Ini adalah teks narasi setelah gambar 13.</div>
+        <div class="comic-page">
+            <img src="asset/img/14a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/14b.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/14c.webp" class="comic-img" loading="lazy">
+        </div>
+        <div class="comic-text">Ini adalah teks narasi setelah gambar 14.</div>
+        <div class="comic-page">
+            <img src="asset/img/15a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/15b.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/15c.webp" class="comic-img" loading="lazy">
+        </div>
+        <div class="comic-text">Ini adalah teks narasi setelah gambar 15.</div>
+        <div class="comic-page">
+            <img src="asset/img/16a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/16b.webp" class="comic-img" loading="lazy">
+            <!-- <img src="asset/img/10c.webp" class="comic-img" loading="lazy"> -->
+        </div>
+        <div class="comic-text">Ini adalah teks narasi setelah gambar 16</div>
+        <div class="comic-page">
+            <img src="asset/img/17a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/17b.webp" class="comic-img" loading="lazy">
+            <!-- <img src="asset/img/10c.webp" class="comic-img" loading="lazy"> -->
+        </div>
+        <div class="comic-text">Ini adalah teks narasi setelah gambar 17.</div>
+        <div class="comic-page">
+            <img src="asset/img/18a.webp" class="comic-img" loading="lazy">
+            <img src="asset/img/18b.webp" class="comic-img" loading="lazy">
+            <!-- <img src="asset/img/10c.webp" class="comic-img" loading="lazy"> -->
+        </div>
+        <div class="comic-text">Ini adalah teks narasi setelah gambar 18.</div>
+
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const title = document.querySelectorAll('.title');
+            const elements = document.querySelectorAll('.comic-text');
+            const background = document.getElementById('background');
+            const comicPages = document.querySelectorAll('.comic-page');
+
+            function createBubbles(count, speedFactor) {
+                background.innerHTML = '';
+                for (let i = 0; i < count; i++) {
+                    let bubble = document.createElement('div');
+                    bubble.classList.add('bubble');
+                    bubble.style.setProperty('--size', Math.random());
+                    bubble.style.setProperty('--speed', (4 + Math.random() * speedFactor) + 's');
+                    bubble.style.setProperty('--opacity', (0.3 + Math.random() * 0.7));
+                    bubble.style.left = Math.random() * 100 + 'vw';
+                    background.appendChild(bubble);
+                }
+            }
+
+            function handleScroll() {
+                title.forEach((el) => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        el.classList.add('visible');
+                        el.classList.add('active');
+                    }
+                });
+
+                elements.forEach((el) => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        el.classList.add('visible');
+                        el.classList.add('active');
+                    } else {
+                        // el.classList.remove('visible');
+                        // el.classList.remove('active');
+                    }
+                });
+
+                comicPages.forEach((page) => {
+                    const rect = page.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0 && !page.classList.contains("visible")) {
+                        page.classList.add("visible");
+
+                        // Ambil semua gambar di dalam div ini
+                        const images = page.querySelectorAll(".comic-img");
+                        images.forEach((img, index) => {
+                            setTimeout(() => {
+                                img.classList.add("visible");
+                            }, index * 800); // Delay tiap gambar 
+                        });
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', handleScroll);
+            createBubbles(20, 8);
+
+            function animateBubbles() {
+                document.querySelectorAll(".bubble").forEach((bubble) => {
+                    let pos = parseFloat(bubble.style.bottom) || -20;
+                    let speed = parseFloat(bubble.style.getPropertyValue('--speed')) || 5;
+                    pos += speed / 100; // Smooth animation
+                    if (pos > window.innerHeight) pos = -20;
+                    bubble.style.bottom = pos + "px";
+                });
+                requestAnimationFrame(animateBubbles);
+            }
+            animateBubbles(); // Mulai animasi
+        });
+    </script>
+</body>
+</html>
