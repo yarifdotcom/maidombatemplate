@@ -339,12 +339,12 @@
             const comicPages = document.querySelectorAll('.comic-page');
 
             title.forEach((el) => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    el.classList.add('visible');
-                    el.classList.add('active');
-                }
-            });
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        el.classList.add('visible');
+                        el.classList.add('active');
+                    }
+                });
 
             function createBubbles(count, speedFactor) {
                 background.innerHTML = '';
